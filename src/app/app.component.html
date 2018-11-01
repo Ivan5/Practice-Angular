@@ -1,5 +1,39 @@
 <app-nav></app-nav>
 <div class="container mt-3">
-  
+  <router-outlet></router-outlet>
+</div>
+
+<div class="container mt-3">
+  <div class="row">
+    <button class="btn btn-primary" (click)="visible = !visible">{{visible}}</button>
+    <p *ngIf="visible; else hidden">Ahora soy visible</p>
+    <ng-template #hidden>
+      <p>Yo soy visible y me voy a ocultar</p>
+    </ng-template>
+  </div>
+
+  <div class="row">
+    <ul>
+      <li *ngFor="let car of cars; let i = index">{{i}} - {{car}}</li>
+    </ul>
+  </div>
+
+  <div class="row">
+    <ul>
+      <li *ngFor="let auto of autos">{{auto | json}}</li>
+    </ul>
+  </div>
+
+  <div class="row">
+    <ul>
+      <li *ngFor="let auto of autos" [ngStyle]="{backgroundColor: auto.total > 0 ? 'green' : 'red'}">{{auto.nombre}}</li>
+    </ul>
+  </div>
+
+  <div class="row">
+    <ul>
+      <li *ngFor="let auto of autos" [ngClass]="{'alert-success' : auto.total > 0,  'alert-danger': auto.total == 0}">{{auto.nombre}}</li>
+    </ul>
+  </div>
 </div>
 <app-footer></app-footer>
